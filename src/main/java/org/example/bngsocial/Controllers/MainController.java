@@ -20,10 +20,10 @@ public class MainController {
             return;
         }
 
-        new mainScreen().show(stage, username);
+        new mainScreen().show(stage, u.getName());
     }
 
-    public void register(String username, String p1, String p2, Stage stage) {
+    public void register(String name, String username, String email, String p1, String p2, Stage stage) {
 
         if (!p1.equals(p2)) {
             Alert a = new Alert(Alert.AlertType.ERROR);
@@ -32,11 +32,18 @@ public class MainController {
             return;
         }
 
-        boolean success = UserDatabase.addUser(new User(username, p1));
+        if (name.isEmpty() || username.isEmpty() || email.isEmpty()) {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText("Tüm alanları doldurun!");
+            a.show();
+            return;
+        }
+
+        boolean success = UserDatabase.addUser(new User(name, username, email, p1));
 
         if (!success) {
             Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText("Kullanıcı adı zaten var!");
+            a.setContentText("Kullanıcı adı veya email zaten kayıtlı!");
             a.show();
             return;
         }
@@ -48,16 +55,30 @@ public class MainController {
         new signScreen().show(stage);
     }
 
-    public void resetPassword(String username, Stage stage) {
+    public void resetPassword(String username, String email, String newPassword, String confirmPassword, Stage stage) {
 
-        boolean found = UserDatabase.resetPassword(username);
+        if (!newPassword.equals(confirmPassword)) {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText("Yeni şifreler aynı değil!");
+            a.show();
+            return;
+        }
+
+        if (username.isEmpty() || email.isEmpty() || newPassword.isEmpty()) {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText("Tüm alanları doldurun!");
+            a.show();
+            return;
+        }
+
+        boolean success = UserDatabase.resetPassword(username, email, newPassword);
 
         Alert a = new Alert(Alert.AlertType.INFORMATION);
 
-        if (found) {
-            a.setContentText("Şifre sıfırlama isteği kaydedildi.");
+        if (success) {
+            a.setContentText("Şifre başarıyla güncellendi!");
         } else {
-            a.setContentText("Kullanıcı bulunamadı!");
+            a.setContentText("Kullanıcı adı veya email hatalı!");
         }
 
         a.show();

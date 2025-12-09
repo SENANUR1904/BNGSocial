@@ -8,6 +8,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
+        // FXML kullanmadan direkt signScreen class'ını çağır
         new signScreen().show(stage);
     }
 

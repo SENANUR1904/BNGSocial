@@ -18,31 +18,47 @@ public class registerScreen {
         Label title = new Label("Kayıt Ol");
         title.setStyle("-fx-font-size: 22px; -fx-font-weight: bold;");
 
+        TextField name = new TextField();
+        name.setPromptText("İsim");
+        name.setPrefWidth(260);
+
         TextField username = new TextField();
         username.setPromptText("Kullanıcı Adı");
+        username.setPrefWidth(260);
+
+        TextField email = new TextField();
+        email.setPromptText("Email");
+        email.setPrefWidth(260);
 
         PasswordField pass1 = new PasswordField();
         pass1.setPromptText("Şifre");
+        pass1.setPrefWidth(260);
 
         PasswordField pass2 = new PasswordField();
         pass2.setPromptText("Şifre (Tekrar)");
+        pass2.setPrefWidth(260);
 
         Button registerBtn = new Button("Kayıt Ol");
+        registerBtn.setPrefWidth(260);
+        registerBtn.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white;");
+
         Button backBtn = new Button("Geri");
+        backBtn.setPrefWidth(260);
 
         MainController controller = new MainController();
 
         registerBtn.setOnAction(e ->
-                controller.register(username.getText(), pass1.getText(), pass2.getText(), stage)
+                controller.register(name.getText(), username.getText(), email.getText(),
+                        pass1.getText(), pass2.getText(), stage)
         );
 
         backBtn.setOnAction(e -> new signScreen().show(stage));
 
-        VBox root = new VBox(12, title, username, pass1, pass2, registerBtn, backBtn);
+        VBox root = new VBox(12, title, name, username, email, pass1, pass2, registerBtn, backBtn);
         root.setAlignment(Pos.CENTER);
         root.setPadding(new Insets(20));
 
-        stage.setScene(new Scene(root, 350, 350));
+        stage.setScene(new Scene(root, 350, 420));
         stage.setTitle("Kayıt");
         stage.show();
     }
