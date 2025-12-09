@@ -7,4 +7,8 @@ module org.example.bngsocial {
 
     opens org.example.bngsocial to javafx.fxml;
     exports org.example.bngsocial;
+    exports org.example.bngsocial.Controllers;
+    opens org.example.bngsocial.Controllers to javafx.fxml;
+    exports org.example.bngsocial.Screens;
+    opens org.example.bngsocial.Screens to javafx.fxml;
 }

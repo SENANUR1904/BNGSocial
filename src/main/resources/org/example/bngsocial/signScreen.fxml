@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml">
+
+    <!-- ORTA: Giriş paneli -->
+    <center>
+        <VBox spacing="15" alignment="CENTER">
+            <padding>
+                <Insets top="40" bottom="40" left="20" right="20" />
+            </padding>
+
+            <Label text="Giriş Yap"
+                   style="-fx-font-size: 26px; -fx-font-weight: bold;" />
+
+            <TextField fx:id="usernameField"
+                       promptText="Kullanıcı Adı"
+                       prefWidth="260" />
+
+            <PasswordField fx:id="passwordField"
+                           promptText="Şifre"
+                           prefWidth="260" />
+
+            <Button fx:id="signInButton"
+                    text="Giriş Yap"
+                    prefWidth="260"
+                    style="-fx-font-size: 14px;" />
+        </VBox>
+    </center>
+
+    <!-- ALT: Kayıt Ol (sol) | Şifremi Unuttum (sağ) -->
+    <bottom>
+        <AnchorPane prefHeight="50">
+            <!-- Sol alt -->
+            <Button fx:id="openRegisterButton"
+                    text="Kayıt Ol"
+                    layoutX="10"
+                    layoutY="10" />
+
+            <!-- Sağ alt -->
+            <Button fx:id="openForgotButton"
+                    text="Şifremi Unuttum"
+                    layoutY="10"
+                    AnchorPane.rightAnchor="10" />
+        </AnchorPane>
+    </bottom>
+
+</BorderPane>
