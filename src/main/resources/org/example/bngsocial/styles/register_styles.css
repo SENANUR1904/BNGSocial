@@ -1,0 +1,106 @@
+/* Ana VBox için genel stil */
+VBox {
+    -fx-background-color: #ffffff;
+}
+
+/* Uygulama başlığı */
+.app-title {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2196F3;
+    -fx-font-family: 'Arial', sans-serif;
+}
+
+/* Ekran başlığı */
+.screen-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-padding: 10 0 20 0;
+    -fx-font-family: 'Arial', sans-serif;
+}
+
+/* Form alanları (TextField ve PasswordField) */
+.form-field {
+    -fx-pref-width: 280px;
+    -fx-pref-height: 40px;
+    -fx-padding: 8px 12px;
+    -fx-font-size: 14px;
+    -fx-font-family: 'Arial', sans-serif;
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1px;
+}
+
+/* Form alanlarına odaklanıldığında */
+.form-field:focused {
+    -fx-border-color: #2196F3;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(33, 150, 243, 0.3), 10, 0, 0, 0);
+}
+
+/* Form alanları placeholder rengi */
+.form-field .text-input {
+    -fx-text-fill: #333333;
+}
+
+.form-field .prompt-text {
+    -fx-text-fill: #999999;
+}
+
+/* Kayıt butonu (secondary) */
+.secondary-button {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-font-family: 'Arial', sans-serif;
+    -fx-background-color: #2196F3;
+    -fx-text-fill: white;
+    -fx-pref-width: 280px;
+    -fx-pref-height: 40px;
+    -fx-padding: 0;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+}
+
+/* Secondary button hover efekti */
+.secondary-button:hover {
+    -fx-background-color: #1976D2;
+    -fx-effect: dropshadow(gaussian, rgba(33, 150, 243, 0.3), 5, 0, 0, 2);
+}
+
+/* Secondary button tıklandığında */
+.secondary-button:pressed {
+    -fx-background-color: #1565C0;
+    -fx-translate-y: 1px;
+}
+
+/* Geri dön butonu (default) */
+.default-button {
+    -fx-font-size: 14px;
+    -fx-font-family: 'Arial', sans-serif;
+    -fx-background-color: #f0f0f0;
+    -fx-text-fill: #333333;
+    -fx-pref-width: 280px;
+    -fx-pref-height: 40px;
+    -fx-padding: 0;
+    -fx-background-radius: 5px;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1px;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+}
+
+/* Default button hover efekti */
+.default-button:hover {
+    -fx-background-color: #e0e0e0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 3, 0, 0, 1);
+}
+
+/* Default button tıklandığında */
+.default-button:pressed {
+    -fx-background-color: #d0d0d0;
+    -fx-translate-y: 1px;
+}

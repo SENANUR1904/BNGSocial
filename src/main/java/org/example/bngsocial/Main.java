@@ -25,8 +25,23 @@ public class Main extends Application {
 
         } catch (Exception e) {
             e.printStackTrace();
-            new org.example.bngsocial.Screens.signScreen().show(primaryStage);
+            showErrorScreen(primaryStage);
         }
+    }
+
+    private void showErrorScreen(Stage stage) {
+        javafx.scene.control.Label errorLabel = new javafx.scene.control.Label(
+                "❌ Uygulama başlatılamadı!\n\n" +
+                        "Lütfen konsoldaki hataları kontrol edin."
+        );
+        errorLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: red; -fx-padding: 20px;");
+
+        javafx.scene.layout.VBox vbox = new javafx.scene.layout.VBox(errorLabel);
+        vbox.setAlignment(javafx.geometry.Pos.CENTER);
+
+        stage.setScene(new Scene(vbox, 500, 300));
+        stage.setTitle("Hata!");
+        stage.show();
     }
 
     public static void main(String[] args) {

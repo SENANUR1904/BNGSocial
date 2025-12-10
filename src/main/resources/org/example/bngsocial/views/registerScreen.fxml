@@ -7,25 +7,44 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.geometry.Insets?>
 
+<?import java.net.URL?>
 <VBox spacing="10" alignment="CENTER"
       xmlns="http://javafx.com/javafx/17"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="org.example.bngsocial.Controllers.RegisterController">
 
+
+<stylesheets>
+<URL value="@../styles/register_styles.css"/>
+</stylesheets>
+
     <padding>
         <Insets top="20" bottom="20" left="20" right="20" />
     </padding>
 
-    <Label text="Kayıt Ol" styleClass="title-label" />
+    <Label text="BNGSOCIAL" styleClass="app-title" />
 
-    <TextField fx:id="nameField" promptText="İsim" styleClass="form-field" />
-    <TextField fx:id="usernameField" promptText="Kullanıcı Adı" styleClass="form-field" />
-    <TextField fx:id="emailField" promptText="Email" styleClass="form-field" />
-    <PasswordField fx:id="passwordField" promptText="Şifre" styleClass="form-field" />
-    <PasswordField fx:id="confirmPasswordField" promptText="Şifre Tekrar" styleClass="form-field" />
+    <Label text="Kayıt Ol" styleClass="screen-title" />
 
-    <Button fx:id="registerButton" text="Kaydı Tamamla" onAction="#handleRegister" styleClass="secondary-button" />
+    <TextField fx:id="nameField" promptText="İsim"
+               styleClass="form-field" />
 
-    <Button fx:id="backButton" text="Geri Dön" onAction="#handleBack" styleClass="default-button" />
+    <TextField fx:id="usernameField" promptText="Kullanıcı Adı"
+               styleClass="form-field" />
+
+    <TextField fx:id="emailField" promptText="Email"
+               styleClass="form-field" />
+
+    <PasswordField fx:id="passwordField" promptText="Şifre"
+                   styleClass="form-field" />
+
+    <PasswordField fx:id="confirmPasswordField" promptText="Şifre Tekrar"
+                   styleClass="form-field" />
+
+    <Button fx:id="registerButton" text="Kaydı Tamamla" onAction="#handleRegister"
+            styleClass="secondary-button" />
+
+    <Button fx:id="backButton" text="Geri Dön" onAction="#handleBack"
+            styleClass="default-button" />
 
 </VBox>

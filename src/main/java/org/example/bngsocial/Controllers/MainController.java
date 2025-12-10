@@ -1,56 +1,98 @@
 package org.example.bngsocial.Controllers;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import org.example.bngsocial.Models.User;
 import org.example.bngsocial.Models.UserDatabase;
-import org.example.bngsocial.Screens.mainScreen;
-import org.example.bngsocial.Screens.signScreen;
+
+import java.io.IOException;
 
 public class MainController {
 
-    public void login(String username, String password, Stage stage) {
+    public void showAlert(Alert.AlertType type, String title, String message) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    public void changeScreen(Stage stage, String fxmlPath, String title) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/org/example/bngsocial/styles/style.css").toExternalForm());
+
+            stage.setScene(scene);
+            stage.setTitle(title);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Hata", "Ekran yüklenemedi!");
+        }
+    }
+
+    public boolean login(String username, String password, Stage stage) {
         User user = UserDatabase.login(username, password);
 
         if (user == null) {
             showAlert(Alert.AlertType.ERROR, "Hata", "Hatalı kullanıcı adı veya şifre!");
-            return;
+            return false;
         }
 
-        new mainScreen().show(stage, user.getName());
+        // Ana ekrana geç
+        changeScreen(stage, "/org/example/bngsocial/views/mainScreen.fxml", "Ana Sayfa - " + user.getName());
+
+        // MainScreenController'a kullanıcı adını ilet
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/bngsocial/views/mainScreen.fxml"));
+            Parent root = loader.load();
+            MainScreenController controller = loader.getController();
+            controller.setUsername(user.getName());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return true;
     }
 
-    public void register(String name, String username, String email, String password1, String password2, Stage stage) {
+    public boolean register(String name, String username, String email, String password1, String password2, Stage stage) {
         if (!password1.equals(password2)) {
             showAlert(Alert.AlertType.ERROR, "Hata", "Şifreler aynı değil!");
-            return;
+            return false;
         }
 
         if (name.isEmpty() || username.isEmpty() || email.isEmpty() || password1.isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Hata", "Tüm alanları doldurun!");
-            return;
+            return false;
         }
 
         boolean success = UserDatabase.addUser(new User(name, username, email, password1));
 
         if (!success) {
             showAlert(Alert.AlertType.ERROR, "Hata", "Kullanıcı adı veya email zaten kayıtlı!");
-            return;
+            return false;
         }
 
         showAlert(Alert.AlertType.INFORMATION, "Başarılı", "Kayıt başarılı! Giriş yapabilirsiniz.");
-        new signScreen().show(stage);
+        return true;
     }
 
-    public void resetPassword(String username, String email, String newPassword, String confirmPassword, Stage stage) {
+    public boolean resetPassword(String username, String email, String newPassword, String confirmPassword, Stage stage) {
         if (!newPassword.equals(confirmPassword)) {
             showAlert(Alert.AlertType.ERROR, "Hata", "Yeni şifreler aynı değil!");
-            return;
+            return false;
         }
 
         if (username.isEmpty() || email.isEmpty() || newPassword.isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Hata", "Tüm alanları doldurun!");
-            return;
+            return false;
         }
 
         boolean success = UserDatabase.resetPassword(username, email, newPassword);
@@ -61,14 +103,6 @@ public class MainController {
             showAlert(Alert.AlertType.ERROR, "Hata", "Kullanıcı adı veya email hatalı!");
         }
 
-        new signScreen().show(stage);
-    }
-
-    private void showAlert(Alert.AlertType type, String title, String message) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+        return success;
     }
 }

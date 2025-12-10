@@ -1,0 +1,145 @@
+/* Ana VBox için genel stil */
+VBox {
+    -fx-background-color: #ffffff;
+}
+
+/* Uygulama başlığı */
+.app-title {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2196F3;
+    -fx-font-family: 'Arial', sans-serif;
+}
+
+/* Ekran başlığı */
+.screen-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-padding: 10 0 20 0;
+    -fx-font-family: 'Arial', sans-serif;
+}
+
+/* Alt başlık */
+.subtitle {
+    -fx-font-size: 18px;
+    -fx-text-fill: #555555;
+    -fx-padding: 0 0 10 0;
+    -fx-font-family: 'Arial', sans-serif;
+    -fx-font-weight: 600;
+}
+
+/* TextArea stili */
+.text-area {
+    -fx-pref-width: 320px;
+    -fx-pref-height: 100px;
+    -fx-font-size: 14px;
+    -fx-font-family: 'Arial', sans-serif;
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1px;
+    -fx-padding: 8px;
+}
+
+/* TextArea odaklandığında */
+.text-area:focused {
+    -fx-border-color: #2196F3;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(33, 150, 243, 0.3), 10, 0, 0, 0);
+}
+
+/* TextArea scrollbar stili */
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .content {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-bar:vertical,
+.text-area .scroll-bar:horizontal {
+    -fx-background-color: #f0f0f0;
+}
+
+.text-area .scroll-bar:vertical .thumb,
+.text-area .scroll-bar:horizontal .thumb {
+    -fx-background-color: #cccccc;
+    -fx-background-radius: 5px;
+}
+
+.text-area .scroll-bar:vertical .thumb:hover,
+.text-area .scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: #aaaaaa;
+}
+
+/* TextArea placeholder rengi */
+.text-area .text-input {
+    -fx-text-fill: #333333;
+}
+
+.text-area .prompt-text {
+    -fx-text-fill: #999999;
+}
+
+/* Paylaş butonu */
+.primary-button {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-font-family: 'Arial', sans-serif;
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-pref-width: 320px;
+    -fx-pref-height: 40px;
+    -fx-padding: 0;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+}
+
+/* Primary button hover efekti */
+.primary-button:hover {
+    -fx-background-color: #45a049;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 2);
+}
+
+/* Primary button tıklandığında */
+.primary-button:pressed {
+    -fx-background-color: #3d8b40;
+    -fx-translate-y: 1px;
+}
+
+/* Çıkış butonu */
+.default-button {
+    -fx-font-size: 14px;
+    -fx-font-family: 'Arial', sans-serif;
+    -fx-background-color: #f0f0f0;
+    -fx-text-fill: #333333;
+    -fx-pref-width: 320px;
+    -fx-pref-height: 40px;
+    -fx-padding: 0;
+    -fx-background-radius: 5px;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1px;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+    -fx-margin-top: 10px;
+}
+
+/* Default button hover efekti */
+.default-button:hover {
+    -fx-background-color: #e0e0e0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 3, 0, 0, 1);
+}
+
+/* Default button tıklandığında */
+.default-button:pressed {
+    -fx-background-color: #d0d0d0;
+    -fx-translate-y: 1px;
+}
