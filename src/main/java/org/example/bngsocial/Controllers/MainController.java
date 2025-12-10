@@ -10,78 +10,65 @@ import org.example.bngsocial.Screens.signScreen;
 public class MainController {
 
     public void login(String username, String password, Stage stage) {
+        User user = UserDatabase.login(username, password);
 
-        User u = UserDatabase.login(username, password);
-
-        if (u == null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Hatalı kullanıcı adı veya şifre!");
-            alert.show();
+        if (user == null) {
+            showAlert(Alert.AlertType.ERROR, "Hata", "Hatalı kullanıcı adı veya şifre!");
             return;
         }
 
-        new mainScreen().show(stage, u.getName());
+        new mainScreen().show(stage, user.getName());
     }
 
-    public void register(String name, String username, String email, String p1, String p2, Stage stage) {
-
-        if (!p1.equals(p2)) {
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText("Şifreler aynı değil!");
-            a.show();
+    public void register(String name, String username, String email, String password1, String password2, Stage stage) {
+        if (!password1.equals(password2)) {
+            showAlert(Alert.AlertType.ERROR, "Hata", "Şifreler aynı değil!");
             return;
         }
 
-        if (name.isEmpty() || username.isEmpty() || email.isEmpty()) {
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText("Tüm alanları doldurun!");
-            a.show();
+        if (name.isEmpty() || username.isEmpty() || email.isEmpty() || password1.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Hata", "Tüm alanları doldurun!");
             return;
         }
 
-        boolean success = UserDatabase.addUser(new User(name, username, email, p1));
+        boolean success = UserDatabase.addUser(new User(name, username, email, password1));
 
         if (!success) {
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText("Kullanıcı adı veya email zaten kayıtlı!");
-            a.show();
+            showAlert(Alert.AlertType.ERROR, "Hata", "Kullanıcı adı veya email zaten kayıtlı!");
             return;
         }
 
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-        a.setContentText("Kayıt başarılı!");
-        a.show();
-
+        showAlert(Alert.AlertType.INFORMATION, "Başarılı", "Kayıt başarılı! Giriş yapabilirsiniz.");
         new signScreen().show(stage);
     }
 
     public void resetPassword(String username, String email, String newPassword, String confirmPassword, Stage stage) {
-
         if (!newPassword.equals(confirmPassword)) {
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText("Yeni şifreler aynı değil!");
-            a.show();
+            showAlert(Alert.AlertType.ERROR, "Hata", "Yeni şifreler aynı değil!");
             return;
         }
 
         if (username.isEmpty() || email.isEmpty() || newPassword.isEmpty()) {
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText("Tüm alanları doldurun!");
-            a.show();
+            showAlert(Alert.AlertType.ERROR, "Hata", "Tüm alanları doldurun!");
             return;
         }
 
         boolean success = UserDatabase.resetPassword(username, email, newPassword);
 
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-
         if (success) {
-            a.setContentText("Şifre başarıyla güncellendi!");
+            showAlert(Alert.AlertType.INFORMATION, "Başarılı", "Şifre başarıyla güncellendi!");
         } else {
-            a.setContentText("Kullanıcı adı veya email hatalı!");
+            showAlert(Alert.AlertType.ERROR, "Hata", "Kullanıcı adı veya email hatalı!");
         }
 
-        a.show();
         new signScreen().show(stage);
+    }
+
+    private void showAlert(Alert.AlertType type, String title, String message) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
