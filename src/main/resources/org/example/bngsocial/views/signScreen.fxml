@@ -8,28 +8,46 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.geometry.Insets?>
 
+<?import java.net.URL?>
 <VBox spacing="15" alignment="CENTER"
       xmlns="http://javafx.com/javafx/17"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="org.example.bngsocial.Controllers.SignScreenController">
 
+    <stylesheets>
+        <URL value="@../styles/sign_styles.css"/>
+    </stylesheets>
+
     <padding>
-        <Insets top="40" bottom="40" left="20" right="20" />
+        <Insets top="20" bottom="20" left="20" right="20" />
     </padding>
 
-    <Label text="Giriş Yap" styleClass="title-label" />
+    <!-- ÜSTTE UYGULAMA ADI -->
+    <Label text="BNGSOCIAL" styleClass="app-title" />
 
-    <TextField fx:id="usernameField" promptText="Kullanıcı Adı" styleClass="form-field" />
-    <PasswordField fx:id="passwordField" promptText="Şifre" styleClass="form-field" />
+    <!-- ALTTA EKRAN ADI -->
+    <Label text="Giriş Yap" styleClass="screen-title" />
 
-    <Button fx:id="signInButton" text="Giriş Yap" onAction="#handleSignIn" styleClass="primary-button" />
+    <TextField fx:id="usernameField" promptText="Kullanıcı Adı"
+               styleClass="form-field" />
 
-    <HBox spacing="150" alignment="CENTER">
-        <Label fx:id="forgotPasswordLabel" text="Şifremi Unuttum"
-               onMouseClicked="#openForgotPassword" styleClass="link-label" />
+    <PasswordField fx:id="passwordField" promptText="Şifre"
+                   styleClass="form-field" />
 
+    <Button fx:id="signInButton" text="Giriş Yap" onAction="#handleSignIn"
+            styleClass="primary-button" />
+
+    <!-- ALTTA LİNKLER - SOL: Kayıt Ol, SAĞ: Şifremi Unuttum -->
+    <HBox styleClass="link-container">
+        <!-- SOL: Kayıt Ol -->
         <Label fx:id="registerLabel" text="Kayıt Ol"
-               onMouseClicked="#openRegister" styleClass="link-label" />
+               onMouseClicked="#openRegister"
+               styleClass="link-label" />
+
+        <!-- SAĞ: Şifremi Unuttum -->
+        <Label fx:id="forgotPasswordLabel" text="Şifremi Unuttum"
+               onMouseClicked="#openForgotPassword"
+               styleClass="link-label" />
     </HBox>
 
 </VBox>

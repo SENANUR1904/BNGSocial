@@ -1,122 +1,36 @@
-/* Tüm ekranlar için ortak CSS */
+/* style.css - Tüm tasarım burada */
 
-/* GENEL STİLLER */
 .root {
     -fx-font-family: "Segoe UI", Arial, sans-serif;
-    -fx-background-color: #f5f5f5;
+    -fx-background-color: #f8f9fa;
 }
 
-/* CONTAINER STİLLERİ */
-.container {
-    -fx-spacing: 15px;
-    -fx-alignment: center;
-    -fx-padding: 40px 20px;
-    -fx-background-color: white;
-    -fx-background-radius: 10px;
-    -fx-border-radius: 10px;
-    -fx-border-color: #e0e0e0;
-    -fx-border-width: 1px;
+/* UYGULAMA BAŞLIĞI */
+.app-title {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2196F3;
 }
 
-/* BAŞLIK STİLLERİ */
-.title-label {
-    -fx-font-size: 26px;
+/* EKRAN BAŞLIĞI */
+.screen-title {
+    -fx-font-size: 24px;
     -fx-font-weight: bold;
     -fx-text-fill: #333333;
+    -fx-padding: 10 0 20 0;
 }
-
-.subtitle-label {
+.link-label:hover {
+    -fx-text-fill: #1a3d7a;
+    -fx-underline: true;
+}
+/* ALT BAŞLIK */
+.subtitle {
     -fx-font-size: 18px;
     -fx-font-weight: bold;
     -fx-text-fill: #555555;
 }
 
-/* FORM ELEMANLARI */
-.form-field {
-    -fx-pref-width: 260px;
-    -fx-pref-height: 40px;
-    -fx-padding: 8px 12px;
-    -fx-font-size: 14px;
-    -fx-background-radius: 5px;
-    -fx-border-radius: 5px;
-    -fx-border-color: #cccccc;
-    -fx-border-width: 1px;
-    -fx-background-color: white;
-}
-
-.form-field:focused {
-    -fx-border-color: #4CAF50;
-    -fx-border-width: 2px;
-}
-
-/* BUTON STİLLERİ */
-.primary-button {
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-padding: 10px 20px;
-    -fx-background-color: #4CAF50;
-    -fx-text-fill: white;
-    -fx-background-radius: 5px;
-    -fx-border-radius: 5px;
-    -fx-cursor: hand;
-    -fx-pref-width: 260px;
-}
-
-.primary-button:hover {
-    -fx-background-color: #45a049;
-}
-
-.secondary-button {
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-padding: 10px 20px;
-    -fx-background-color: #2196F3;
-    -fx-text-fill: white;
-    -fx-background-radius: 5px;
-    -fx-border-radius: 5px;
-    -fx-cursor: hand;
-    -fx-pref-width: 260px;
-}
-
-.secondary-button:hover {
-    -fx-background-color: #0b7dda;
-}
-
-.warning-button {
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-padding: 10px 20px;
-    -fx-background-color: #FF9800;
-    -fx-text-fill: white;
-    -fx-background-radius: 5px;
-    -fx-border-radius: 5px;
-    -fx-cursor: hand;
-    -fx-pref-width: 260px;
-}
-
-.warning-button:hover {
-    -fx-background-color: #e68900;
-}
-
-.default-button {
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-padding: 10px 20px;
-    -fx-background-color: #f0f0f0;
-    -fx-text-fill: #333333;
-    -fx-background-radius: 5px;
-    -fx-border-radius: 5px;
-    -fx-border-color: #cccccc;
-    -fx-border-width: 1px;
-    -fx-cursor: hand;
-    -fx-pref-width: 260px;
-}
-
-.default-button:hover {
-    -fx-background-color: #e0e0e0;
-}
-
-/* LİNK STİLLERİ */
+/* LİNK STİLLERİ - TASARIM BURADA */
 .link-label {
     -fx-text-fill: #2c5aa0;
     -fx-cursor: hand;
@@ -128,22 +42,97 @@
     -fx-underline: true;
 }
 
+/* BUTON STİLLERİ */
+.primary-button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px;
+    -fx-pref-width: 280px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: #45a049;
+}
+
+.secondary-button {
+    -fx-background-color: #2196F3;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px;
+    -fx-pref-width: 280px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #0b7dda;
+}
+
+.warning-button {
+    -fx-background-color: #FF9800;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px;
+    -fx-pref-width: 280px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.warning-button:hover {
+    -fx-background-color: #e68900;
+}
+
+.default-button {
+    -fx-background-color: #f0f0f0;
+    -fx-text-fill: #333333;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px;
+    -fx-pref-width: 280px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1px;
+    -fx-cursor: hand;
+}
+
+.default-button:hover {
+    -fx-background-color: #e0e0e0;
+}
+
+/* FORM ELEMANLARI */
+.form-field {
+    -fx-pref-width: 280px;
+    -fx-pref-height: 40px;
+    -fx-padding: 8px 12px;
+    -fx-font-size: 14px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1px;
+}
+
+.form-field:focused {
+    -fx-border-color: #4CAF50;
+    -fx-border-width: 2px;
+}
+
 /* TEXTAREA */
-.text-area-style {
-    -fx-pref-width: 300px;
+.text-area {
+    -fx-pref-width: 320px;
     -fx-pref-height: 100px;
     -fx-font-size: 14px;
     -fx-background-radius: 5px;
     -fx-border-radius: 5px;
 }
 
-.text-area-style .content {
-    -fx-background-color: white;
-    -fx-background-radius: 5px;
-}
-
-/* HBOX STİLLERİ */
-.hbox-links {
-    -fx-spacing: 150px;
+/* HBOX LINK CONTAINER */
+.link-container {
+    -fx-spacing: 180px;
     -fx-alignment: center;
 }

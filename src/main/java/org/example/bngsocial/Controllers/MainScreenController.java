@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
-import org.example.bngsocial.Screens.signScreen;
+import org.example.bngsocial.Controllers.MainController;
 
 public class MainScreenController {
 
@@ -15,7 +15,6 @@ public class MainScreenController {
     @FXML private Button logoutButton;
 
     private String username;
-    private Stage stage;
 
     public void setUsername(String username) {
         this.username = username;
@@ -24,24 +23,26 @@ public class MainScreenController {
         }
     }
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
     @FXML
     private void handlePost() {
-        String postText = postArea.getText();
-        if (!postText.trim().isEmpty()) {
-            System.out.println(username + " paylaştı: " + postText);
-            postArea.clear();
+        if (postArea != null && username != null) {
+            String postText = postArea.getText();
+            if (!postText.trim().isEmpty()) {
+                System.out.println(username + " paylaştı: " + postText);
+
+                MainController mainController = new MainController();
+                mainController.showAlert(javafx.scene.control.Alert.AlertType.INFORMATION,
+                        "Başarılı", "Paylaşımınız yayınlandı!");
+
+                postArea.clear();
+            }
         }
     }
 
     @FXML
     private void handleLogout() {
-        if (stage == null) {
-            stage = (Stage) logoutButton.getScene().getWindow();
-        }
-        new signScreen().show(stage);
+        Stage stage = (Stage) logoutButton.getScene().getWindow();
+        MainController mainController = new MainController();
+        mainController.changeScreen(stage, "/org/example/bngsocial/views/signScreen.fxml", "Giriş Yap");
     }
 }

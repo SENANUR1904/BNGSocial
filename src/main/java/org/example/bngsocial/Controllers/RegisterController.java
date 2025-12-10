@@ -17,31 +17,12 @@ public class RegisterController {
     @FXML private Button backButton;
 
     private final MainController mainController = new MainController();
-    private Stage stage;
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
-    @FXML
-    public void initialize() {
-        // Butonlara CSS class'larını ekle
-        if (registerButton != null) {
-            registerButton.getStyleClass().add("secondary-button");
-        }
-        if (backButton != null) {
-            backButton.getStyleClass().add("default-button");
-        }
-    }
 
     @FXML
     private void handleRegister() {
-        if (stage == null && registerButton != null) {
-            stage = (Stage) registerButton.getScene().getWindow();
-        }
+        Stage stage = (Stage) registerButton.getScene().getWindow();
 
-        // MainController'daki register metodunu çağır
-        mainController.register(
+        boolean success = mainController.register(
                 nameField.getText(),
                 usernameField.getText(),
                 emailField.getText(),
@@ -49,16 +30,15 @@ public class RegisterController {
                 confirmPasswordField.getText(),
                 stage
         );
+
+        if (success) {
+            mainController.changeScreen(stage, "/org/example/bngsocial/views/signScreen.fxml", "Giriş Yap");
+        }
     }
 
     @FXML
     private void handleBack() {
-        if (stage == null && backButton != null) {
-            stage = (Stage) backButton.getScene().getWindow();
-        }
-        if (stage != null) {
-            // Giriş ekranına dön
-            new org.example.bngsocial.Screens.signScreen().show(stage);
-        }
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        mainController.changeScreen(stage, "/org/example/bngsocial/views/signScreen.fxml", "Giriş Yap");
     }
 }
