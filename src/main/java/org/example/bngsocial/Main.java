@@ -19,8 +19,8 @@ public class Main extends Application {
 
             primaryStage.setScene(scene);
             primaryStage.setTitle("BngSocial - Giriş");
-            primaryStage.setWidth(400);
-            primaryStage.setHeight(500);
+            primaryStage.setWidth(1200);
+            primaryStage.setHeight(800);
             primaryStage.show();
 
         } catch (Exception e) {
