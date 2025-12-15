@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 //sena branch açtı.
 public class Main extends Application {
-
+//kadir
     @Override
     public void start(Stage primaryStage) {
         try {
