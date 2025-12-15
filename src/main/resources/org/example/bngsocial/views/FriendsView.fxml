@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.example.bngsocial.Controllers.FriendsController"
+      spacing="10" style="-fx-background-color: #f4f6f8;">
+
+    <padding><Insets top="20" left="20" right="20" bottom="20"/></padding>
+
+    <Label text="Kişiler &amp; Arkadaşlar" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+        <Tab text="Arkadaşlarım">
+            <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+                <VBox fx:id="myFriendsContainer" spacing="10" style="-fx-padding: 10;"/>
+            </ScrollPane>
+        </Tab>
+
+        <Tab text="Tüm Kişiler (Yeni Ekle)">
+            <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+                <VBox fx:id="allUsersContainer" spacing="10" style="-fx-padding: 10;"/>
+            </ScrollPane>
+        </Tab>
+    </TabPane>
+</VBox>
