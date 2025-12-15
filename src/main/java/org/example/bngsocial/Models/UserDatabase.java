@@ -23,8 +23,7 @@ public class UserDatabase {
         return DriverManager.getConnection(CONNECTION_URL);
     }
 
-    // --- YENİ EKLENEN ŞİFRELEME METODU (SHA-256) ---
-    // Bu metot girilen düz metni (örn: "1234") alır ve şifreli hale (hash) çevirir.
+    // Şifreleme Metodu (SHA-256)
     private static String hashPassword(String password) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -44,12 +43,12 @@ public class UserDatabase {
             return null;
         }
     }
-    // ------------------------------------------------
 
     // KULLANICI EKLEME (Register)
     public static boolean addUser(User u) {
+        // Tablo adınızın 'kullanicilar' olduğunu varsayıyoruz.
         String checkQuery = "SELECT COUNT(*) FROM kullanicilar WHERE username = ? OR email = ?";
-        String insertQuery = "INSERT INTO kullanicilar (full_name, username, email, password_hash) VALUES (?, ?, ?, ?)";
+        String insertQuery = "INSERT INTO Kullanicilar (full_name, username, email, password_hash) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = connect();
              PreparedStatement checkStmt = conn.prepareStatement(checkQuery);
@@ -60,14 +59,13 @@ public class UserDatabase {
             ResultSet rs = checkStmt.executeQuery();
 
             if (rs.next() && rs.getInt(1) > 0) {
-                return false;
+                return false; // Kullanıcı zaten var
             }
 
             insertStmt.setString(1, u.getName());
             insertStmt.setString(2, u.getUsername());
             insertStmt.setString(3, u.getEmail());
-
-            // DİKKAT: Şifreyi doğrudan değil, hash'leyip kaydediyoruz!
+            // Şifreyi hashleyerek kaydediyoruz
             insertStmt.setString(4, hashPassword(u.getPassword()));
 
             int rowsAffected = insertStmt.executeUpdate();
@@ -79,28 +77,33 @@ public class UserDatabase {
         }
     }
 
-    // KULLANICI GİRİŞİ (Login)
+    // UserDatabase.java içinde
     public static User login(String username, String password) {
-        String query = "SELECT * FROM kullanicilar WHERE username = ? AND password_hash = ?";
+        // Tablo adın hata mesajına göre 'Kullanicilar' olmalı
+        String query = "SELECT * FROM Kullanicilar WHERE username = ? AND password_hash = ?";
 
         try (Connection conn = connect();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
             stmt.setString(1, username);
-
-            // DİKKAT: Giriş yaparken girilen şifreyi hashleyip veritabanındaki hash ile kıyaslıyoruz!
             stmt.setString(2, hashPassword(password));
 
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
+                // --- KRİTİK KISIM BAŞLANGICI ---
+                // Veritabanındaki ID sütununun tam adını yazmalısın.
+                // Hata mesajında column 'user_id' dediği için buraya "user_id" yazıyoruz.
+                int dbId = rs.getInt("user_id");
+                // --- KRİTİK KISIM BİTİŞİ ---
+
                 String dbName = rs.getString("full_name");
                 String dbUsername = rs.getString("username");
                 String dbEmail = rs.getString("email");
-                // Veritabanından gelen şifre zaten hash'lidir
                 String dbPassword = rs.getString("password_hash");
 
-                return new User(dbName, dbUsername, dbEmail, dbPassword);
+                // ID'yi de kurucu metoda (Constructor) gönderiyoruz
+                return new User(dbId, dbName, dbUsername, dbEmail, dbPassword);
             }
 
         } catch (SQLException e) {
@@ -109,16 +112,14 @@ public class UserDatabase {
         return null;
     }
 
-    // ŞİFRE GÜNCELLEME (Reset Password)
+    // ŞİFRE GÜNCELLEME
     public static boolean resetPassword(String username, String email, String newPassword) {
-        String query = "UPDATE kullanicilar SET password_hash = ? WHERE username = ? AND email = ?";
+        String query = "UPDATE Kullanicilar SET password_hash = ? WHERE username = ? AND email = ?";
 
         try (Connection conn = connect();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
-            // DİKKAT: Yeni şifreyi de hash'leyip güncelliyoruz!
             stmt.setString(1, hashPassword(newPassword));
-
             stmt.setString(2, username);
             stmt.setString(3, email);
 

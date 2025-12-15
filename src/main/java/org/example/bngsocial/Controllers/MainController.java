@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import org.example.bngsocial.Models.User;
 import org.example.bngsocial.Models.UserDatabase;
+import org.example.bngsocial.Controllers.RootController;
 
 import java.io.IOException;
 
@@ -37,7 +38,9 @@ public class MainController {
         }
     }
 
+    // MainController.java içinde
     public boolean login(String username, String password, Stage stage) {
+        // 1. Kullanıcıyı Veritabanından Doğrula
         User user = UserDatabase.login(username, password);
 
         if (user == null) {
@@ -45,18 +48,52 @@ public class MainController {
             return false;
         }
 
-        // Ana ekrana geç
-        changeScreen(stage, "/org/example/bngsocial/views/mainScreen.fxml", "Ana Sayfa - " + user.getName());
+        System.out.println("Giriş Başarılı! ID: " + user.getId());
 
-        // MainScreenController'a kullanıcı adını ilet
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/bngsocial/views/mainScreen.fxml"));
+            // --- DEĞİŞİKLİK 1: ARTIK ROOTLAYOUT YÜKLENİYOR ---
+            String fxmlPath = "/org/example/bngsocial/views/RootLayout.fxml";
+
+            // Dosya var mı kontrol et (Hata ayıklama için önemli)
+            if (getClass().getResource(fxmlPath) == null) {
+                throw new IOException("FXML dosyası bulunamadı! Yol: " + fxmlPath);
+            }
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = loader.load();
-            MainScreenController controller = loader.getController();
-            controller.setUsername(user.getName());
+
+            // --- DEĞİŞİKLİK 2: CONTROLLER TÜRÜ DEĞİŞTİ ---
+            // Artık MainScreenController değil, RootController kullanıyoruz.
+            RootController controller = loader.getController();
+
+            if (controller == null) {
+                throw new Exception("RootLayout.fxml dosyasında fx:controller tanımlanmamış!");
+            }
+
+            // --- DEĞİŞİKLİK 3: VERİ GÖNDERİMİ ---
+            // RootController sadece ID'yi alıp diğer sayfalara dağıtır.
+            controller.setUserData(user.getId(),user.getUsername());
+
+            // 4. Sahneyi Göster
+            Scene scene = new Scene(root);
+
+            // CSS Yükleme
+            try {
+                scene.getStylesheets().add(getClass().getResource("/org/example/bngsocial/styles/main_styles.css").toExternalForm());
+            } catch (Exception e) {
+                System.out.println("CSS yüklenemedi: " + e.getMessage());
+            }
+
+            stage.setScene(scene);
+            stage.setTitle("BNGSocial"); // Başlık artık genel
+            stage.centerOnScreen();
+            stage.show();
 
         } catch (Exception e) {
             e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Sistem Hatası",
+                    "Ana ekran yüklenirken hata oluştu:\n" + e.getMessage());
+            return false;
         }
 
         return true;

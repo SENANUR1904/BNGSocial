@@ -8,6 +8,7 @@ module org.example.bngsocial {
     opens org.example.bngsocial.Models to javafx.fxml;
 
     requires com.microsoft.sqlserver.jdbc;
+    requires java.desktop;
 
     exports org.example.bngsocial;
     exports org.example.bngsocial.Controllers;

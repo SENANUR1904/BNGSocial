@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import java.net.URL?>
+
+<BorderPane fx:id="mainPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.bngsocial.Controllers.RootController"
+            prefHeight="700.0" prefWidth="1000.0">
+
+    <stylesheets>
+        <URL value="@../styles/main_styles.css"/>
+    </stylesheets>
+
+    <center>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER" spacing="15" styleClass="bottom-bar">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+
+            <Button text="🏠 Ana Sayfa" onAction="#showHome" styleClass="nav-button"/>
+            <Button text="👥 Arkadaşlar" onAction="#showFriends" styleClass="nav-button"/>
+
+            <Button text="🕸️ Genel Ağ" onAction="#showNetwork" styleClass="nav-button"/>
+
+            <Button text="➕ Paylaş" onAction="#showNewPost" styleClass="nav-button-action"/>
+            <Button text="🏆 Enler" onAction="#showTopLists" styleClass="nav-button"/>
+            <Button text="⚙️ Ayarlar" onAction="#showSettings" styleClass="nav-button"/>
+        </HBox>
+    </bottom>
+</BorderPane>

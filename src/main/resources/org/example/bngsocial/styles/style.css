@@ -136,3 +136,34 @@
     -fx-spacing: 180px;
     -fx-alignment: center;
 }
+
+/* 1. Varsayılan Hal (Gri) */
+.reaction-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #7f8c8d; /* Gri */
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+    -fx-border-color: #ecf0f1;
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px;
+}
+
+.reaction-button:hover {
+    -fx-background-color: #f5f6fa; /* Üzerine gelince hafif gri */
+}
+
+/* 2. Like Aktif Hal (Yeşil) */
+.like-active {
+    -fx-text-fill: #2ecc71;  /* Yazı yeşil */
+    -fx-font-weight: bold;
+    -fx-border-color: #2ecc71; /* Çerçeve yeşil */
+    -fx-background-color: rgba(46, 204, 113, 0.1); /* Hafif yeşil arka plan */
+}
+
+/* 3. Dislike Aktif Hal (Kırmızı) */
+.dislike-active {
+    -fx-text-fill: #e74c3c; /* Yazı kırmızı */
+    -fx-font-weight: bold;
+    -fx-border-color: #e74c3c; /* Çerçeve kırmızı */
+    -fx-background-color: rgba(231, 76, 60, 0.1); /* Hafif kırmızı arka plan */
+}
