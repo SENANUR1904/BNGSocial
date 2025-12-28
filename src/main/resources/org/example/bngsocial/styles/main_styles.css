@@ -1,96 +1,116 @@
-/* Sidebar */
+/* Sidebar - Sol Menü Alanı */
 .sidebar {
     -fx-background-color: #ffffff;
-    -fx-border-color: transparent #e0e0e0 transparent transparent;
+    -fx-border-color: transparent #f0f0f0 transparent transparent;
+    -fx-border-width: 0 1 0 0;
 }
 
 .app-logo {
-    -fx-font-size: 24px;
+    -fx-font-size: 20px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2196F3;
-    -fx-padding: 0 0 20 0;
+    /* Logo gradyanı ile uyumlu */
+    -fx-text-fill: linear-gradient(to right, #2b5876, #4e4376);
+    -fx-padding: 10 0 25 0;
 }
 
 /* Sidebar Butonları */
 .menu-button, .menu-button-active {
     -fx-background-color: transparent;
-    -fx-text-fill: #555;
+    -fx-text-fill: #636e72; /* Daha modern bir koyu gri */
     -fx-font-size: 14px;
     -fx-alignment: CENTER_LEFT;
-    -fx-padding: 10 15;
+    -fx-padding: 12 20;
     -fx-cursor: hand;
+    -fx-background-radius: 0 25 25 0; /* Sağ kenarı yuvarlak modern seçim stili */
+    -fx-transition: all 0.3s;
 }
 
 .menu-button:hover {
-    -fx-background-color: #f5f5f5;
-    -fx-text-fill: #2196F3;
+    -fx-background-color: #f8f9fa;
+    -fx-text-fill: #4e4376;
 }
 
 .menu-button-active {
-    -fx-background-color: #e3f2fd;
-    -fx-text-fill: #2196F3;
+    -fx-background-color: rgba(78, 67, 118, 0.1); /* Logonun mor tonunun çok şeffaf hali */
+    -fx-text-fill: #4e4376;
     -fx-font-weight: bold;
-    -fx-border-color: transparent transparent transparent #2196F3;
+    /* Sol tarafta şık bir belirteç çizgisi */
+    -fx-border-color: transparent transparent transparent #4e4376;
     -fx-border-width: 0 0 0 4;
 }
 
-/* Paylaşım Alanı */
+/* Paylaşım Alanı (Post Create Box) */
 .post-create-box {
     -fx-background-color: white;
-    -fx-background-radius: 10;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5, 0, 0, 1);
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 15, 0, 0, 4);
     -fx-padding: 15;
 }
 
 .share-button {
-    -fx-background-color: #2196F3;
+    -fx-background-color: linear-gradient(to right, #2b5876, #4e4376);
     -fx-text-fill: white;
     -fx-font-weight: bold;
+    -fx-background-radius: 20;
     -fx-cursor: hand;
+    -fx-padding: 8 25;
+}
+
+.share-button:hover {
+    -fx-opacity: 0.9;
+    -fx-effect: dropshadow(gaussian, rgba(43, 88, 118, 0.3), 10, 0, 0, 2);
 }
 
 .icon-button {
-    -fx-background-color: #e3f2fd;
-    -fx-text-fill: #1565c0;
+    -fx-background-color: #f1f2f6;
+    -fx-text-fill: #2b5876;
+    -fx-background-radius: 10;
     -fx-cursor: hand;
 }
 
-/* Post Aksiyon Butonları */
+/* Post Aksiyon Butonları (Like, Comment vb.) */
 .action-btn {
     -fx-background-color: transparent;
-    -fx-text-fill: #666;
+    -fx-text-fill: #7f8c8d;
     -fx-font-size: 12px;
     -fx-cursor: hand;
-    -fx-border-color: #eee;
-    -fx-border-radius: 5;
+    -fx-border-color: #f1f2f6;
+    -fx-border-radius: 8;
 }
 
 .action-btn:hover {
-    -fx-background-color: #f5f5f5;
+    -fx-background-color: #f8f9fa;
+    -fx-text-fill: #4e4376;
+    -fx-border-color: #4e4376;
 }
+
+/* Alt Çubuk (Bottom Bar) */
 .bottom-bar {
     -fx-background-color: #ffffff;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, -2);
-    -fx-border-color: #e0e0e0 transparent transparent transparent;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 15, 0, 0, -5);
+    -fx-border-color: #f0f0f0 transparent transparent transparent;
 }
 
 .nav-button {
     -fx-background-color: transparent;
-    -fx-text-fill: #757575;
+    -fx-text-fill: #95a5a6;
     -fx-font-weight: bold;
-    -fx-font-size: 14px;
+    -fx-font-size: 13px;
     -fx-cursor: hand;
+    -fx-transition: 0.3s;
 }
+
 .nav-button:hover {
-    -fx-text-fill: #2196F3;
-    -fx-background-color: #f5f5f5;
+    -fx-text-fill: #4e4376;
+    -fx-background-color: #f8f9fa;
     -fx-background-radius: 20;
 }
 
+/* Aksiyon Butonu (Ortadaki artı veya Paylaş butonu gibi) */
 .nav-button-action {
-    -fx-background-color: #2196F3;
+    -fx-background-color: linear-gradient(to bottom, #4e4376, #2b5876);
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-background-radius: 20;
-    -fx-padding: 8 20;
+    -fx-background-radius: 25;
+    -fx-padding: 10 25;
 }

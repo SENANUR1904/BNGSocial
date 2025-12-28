@@ -37,7 +37,7 @@ public class SharingController {
     private String selectedImagePath = null;
 
     // Veritabanı Bağlantısı
-    private static final String DB_URL = "jdbc:sqlserver://DESKTOP-1JTGLF8;databaseName=BNGSocialDB;integratedSecurity=true;encrypt=true;trustServerCertificate=true;";
+    private static final String DB_URL = "jdbc:sqlserver://DESKTOP-QQQ1H73;databaseName=BNGSocialDB;integratedSecurity=true;encrypt=true;trustServerCertificate=true;";
 
     // --- 1. SET USER DATA METODU (MainController'dan çağrılır) ---
     // setUsername YERİNE BUNU KULLANIYORUZ

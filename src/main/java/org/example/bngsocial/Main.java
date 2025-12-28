@@ -4,21 +4,34 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image; // Bu satırı ekledim, logo için şart.
 import javafx.stage.Stage;
-//sena branch açtı.
+
 public class Main extends Application {
-//kadir
+
     @Override
     public void start(Stage primaryStage) {
         try {
+            // 1. FXML Yükleme
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/bngsocial/views/signScreen.fxml"));
             Parent root = loader.load();
 
+            // 2. Scene ve Stil Ayarları
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/org/example/bngsocial/styles/style.css").toExternalForm());
 
+            // 3. LOGO EKLEME (İkon Olarak)
+            // logo.png dosyan resources/org/example/bngsocial/ içinde olduğu için yol bu şekildedir.
+            try {
+                Image appIcon = new Image(getClass().getResourceAsStream("/org/example/bngsocial/logo.png"));
+                primaryStage.getIcons().add(appIcon);
+            } catch (Exception e) {
+                System.out.println("⚠️ Uyarı: Logo dosyası bulunamadı, ikon yüklenemedi.");
+            }
+
+            // 4. Pencere Ayarları
             primaryStage.setScene(scene);
-            primaryStage.setTitle("BngSocial - Giriş");
+            primaryStage.setTitle("BNGSocial - Giriş");
             primaryStage.setWidth(1200);
             primaryStage.setHeight(800);
             primaryStage.show();
@@ -32,9 +45,9 @@ public class Main extends Application {
     private void showErrorScreen(Stage stage) {
         javafx.scene.control.Label errorLabel = new javafx.scene.control.Label(
                 "❌ Uygulama başlatılamadı!\n\n" +
-                        "Lütfen konsoldaki hataları kontrol edin."
+                        "Lütfen konsoldaki hataları (Stack Trace) kontrol edin."
         );
-        errorLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: red; -fx-padding: 20px;");
+        errorLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: red; -fx-padding: 20px; -fx-text-alignment: center;");
 
         javafx.scene.layout.VBox vbox = new javafx.scene.layout.VBox(errorLabel);
         vbox.setAlignment(javafx.geometry.Pos.CENTER);
