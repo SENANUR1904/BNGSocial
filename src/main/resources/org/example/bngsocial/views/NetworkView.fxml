@@ -1,16 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="org.example.bngsocial.Controllers.NetworkController"
-      spacing="10" style="-fx-background-color: #f4f6f8;">
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-    <Label text="Ağ Grafiği (İlişkiler)" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-padding: 10;"/>
+<VBox spacing="0" style="-fx-background-color: #f4f6f8;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bngsocial.Controllers.NetworkController">
 
-    <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS">
-        <Pane fx:id="graphPane" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: white;"/>
-    </ScrollPane>
+    <ToolBar style="-fx-background-color: white; -fx-padding: 10;">
+        <Label style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Ağ Grafiği:" />
+        <Separator orientation="VERTICAL" />
+
+        <Button onAction="#grafOlusturTxt" style="-fx-background-color: #8e44ad; -fx-text-fill: white; -fx-font-weight: bold;" text="grafOlusturTxt" />
+
+        <Button onAction="#grafOlusturDb" style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-font-weight: bold;" text="grafOlusturDb" />
+
+        <Button onAction="#handleGeneralRankingTxt" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;" text="genelSiraTxt" />
+    </ToolBar>
+
+    <TabPane fx:id="networkTabPane" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+
+        <!-- TAB 1: Grafik Görünümü -->
+        <Tab text="Grafik Görünümü">
+            <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: transparent;">
+                <Pane fx:id="graphPane" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: white;" />
+            </ScrollPane>
+        </Tab>
+
+        <!-- TAB 2: Arkadaş Olmayanlar -->
+        <Tab text="Arkadaş Ekle">
+            <ScrollPane fx:id="nonFriendsScrollPane" fitToWidth="true" style="-fx-background-color: transparent;">
+                <VBox fx:id="nonFriendsContainer" spacing="10" style="-fx-padding: 15; -fx-background-color: transparent;">
+                    <Label text="Arkadaş olmadığınız kişiler:" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-padding: 0 0 10 0;" />
+                </VBox>
+            </ScrollPane>
+        </Tab>
+
+        <!-- TAB 3: TXT Sıralama -->
+        <Tab text="TXT İlişki Sıralaması">
+            <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+                <VBox fx:id="txtRankingContainer" spacing="5" style="-fx-padding: 15; -fx-background-color: transparent;">
+                    <Label text="TXT dosyasından ilişki sıralaması:" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-padding: 0 0 10 0;" />
+                </VBox>
+            </ScrollPane>
+        </Tab>
+
+    </TabPane>
+
 </VBox>
