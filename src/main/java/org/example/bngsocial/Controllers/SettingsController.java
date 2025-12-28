@@ -38,7 +38,7 @@ public class SettingsController {
     private String currentPhotoPath = null; // Fotoğrafı büyütmek için yolu hafızada tutuyoruz
 
     // Veritabanı Bağlantısı
-    private final String DB_URL = "jdbc:sqlserver://DESKTOP-1JTGLF8;databaseName=BNGSocialDB;integratedSecurity=true;encrypt=true;trustServerCertificate=true;";
+    private final String DB_URL = "jdbc:sqlserver://DESKTOP-QQQ1H73;databaseName=BNGSocialDB;integratedSecurity=true;encrypt=true;trustServerCertificate=true;";
 
     // --- ANA GİRİŞ NOKTASI ---
     public void setUserId(int userId) {

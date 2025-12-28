@@ -7,8 +7,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.geometry.Insets?>
-
-<?import java.net.URL?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.shape.Circle?> <?import java.net.URL?>
 <VBox spacing="15" alignment="CENTER"
       xmlns="http://javafx.com/javafx/17"
       xmlns:fx="http://javafx.com/fxml/1"
@@ -19,13 +20,24 @@
     </stylesheets>
 
     <padding>
-        <Insets top="20" bottom="20" left="20" right="20" />
+        <Insets top="30" bottom="20" left="20" right="20" />
     </padding>
 
-    <!-- ÜSTTE UYGULAMA ADI -->
+    <ImageView fx:id="logoView" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+        <VBox.margin>
+            <Insets bottom="15.0" />
+        </VBox.margin>
+        <image>
+            <Image url="@../logo.png" />
+        </image>
+
+        <clip>
+            <Circle centerX="100.0" centerY="100.0" radius="100.0" />
+        </clip>
+    </ImageView>
+
     <Label text="BNGSOCIAL" styleClass="app-title" />
 
-    <!-- ALTTA EKRAN ADI -->
     <Label text="Giriş Yap" styleClass="screen-title" />
 
     <TextField fx:id="usernameField" promptText="Kullanıcı Adı"
@@ -37,14 +49,11 @@
     <Button fx:id="signInButton" text="Giriş Yap" onAction="#handleSignIn"
             styleClass="primary-button" />
 
-    <!-- ALTTA LİNKLER - SOL: Kayıt Ol, SAĞ: Şifremi Unuttum -->
-    <HBox styleClass="link-container">
-        <!-- SOL: Kayıt Ol -->
+    <HBox styleClass="link-container" alignment="CENTER" spacing="20">
         <Label fx:id="registerLabel" text="Kayıt Ol"
                onMouseClicked="#openRegister"
                styleClass="link-label" />
 
-        <!-- SAĞ: Şifremi Unuttum -->
         <Label fx:id="forgotPasswordLabel" text="Şifremi Unuttum"
                onMouseClicked="#openForgotPassword"
                styleClass="link-label" />

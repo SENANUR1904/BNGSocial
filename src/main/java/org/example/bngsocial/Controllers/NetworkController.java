@@ -30,7 +30,7 @@ public class NetworkController {
     @FXML private TabPane networkTabPane;
 
     private int currentUserId;
-    private final String DB_URL = "jdbc:sqlserver://DESKTOP-1JTGLF8;databaseName=BNGSocialDB;integratedSecurity=true;encrypt=true;trustServerCertificate=true;";
+    private final String DB_URL = "jdbc:sqlserver://DESKTOP-QQQ1H73;databaseName=BNGSocialDB;integratedSecurity=true;encrypt=true;trustServerCertificate=true;";
 
     private boolean txtRankingLoaded = false; // Butona basılıp basılmadığını kontrol etmek için
 
