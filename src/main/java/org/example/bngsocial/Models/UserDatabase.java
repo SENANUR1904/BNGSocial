@@ -47,7 +47,7 @@ public class UserDatabase {
     // KULLANICI EKLEME (Register)
     public static boolean addUser(User u) {
         // Tablo adınızın 'kullanicilar' olduğunu varsayıyoruz.
-        String checkQuery = "SELECT COUNT(*) FROM kullanicilar WHERE username = ? OR email = ?";
+        String checkQuery = "SELECT COUNT(*) FROM Kullanicilar WHERE username = ? OR email = ?";
         String insertQuery = "INSERT INTO Kullanicilar (full_name, username, email, password_hash) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = connect();

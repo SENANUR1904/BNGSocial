@@ -23,14 +23,14 @@
                 <Insets top="15" right="15" bottom="15" left="15"/>
             </padding>
 
-            <Button text="🏠 Ana Sayfa" onAction="#showHome" styleClass="nav-button"/>
-            <Button text="👥 Arkadaşlar" onAction="#showFriends" styleClass="nav-button"/>
+            <Button text="🏠 Ana Sayfa" onAction="#showHome" styleClass="nav-button-action"/>
+            <Button text="👥 Arkadaşlar" onAction="#showFriends" styleClass="nav-button-action"/>
 
-            <Button text="🕸️ Genel Ağ" onAction="#showNetwork" styleClass="nav-button"/>
+            <Button text="🕸️ Genel Ağ" onAction="#showNetwork" styleClass="nav-button-action"/>
 
             <Button text="➕ Paylaş" onAction="#showNewPost" styleClass="nav-button-action"/>
-            <Button text="🏆 Enler" onAction="#showTopLists" styleClass="nav-button"/>
-            <Button text="⚙️ Ayarlar" onAction="#showSettings" styleClass="nav-button"/>
+            <Button text="🏆 Enler" onAction="#showTopLists" styleClass="nav-button-action"/>
+            <Button text="⚙️ Ayarlar" onAction="#showSettings" styleClass="nav-button-action"/>
         </HBox>
     </bottom>
 </BorderPane>

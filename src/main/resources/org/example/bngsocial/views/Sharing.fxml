@@ -12,7 +12,7 @@
 <VBox spacing="15" alignment="CENTER"
       xmlns="http://javafx.com/javafx/17"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="org.example.bngsocial.Controllers.MainScreenController">
+      fx:controller="org.example.bngsocial.Controllers.SharingController">
 
     <stylesheets>
         <URL value="@../styles/main_styles.css"/>
@@ -32,8 +32,7 @@
     <HBox alignment="CENTER_LEFT" spacing="10">
         <Button fx:id="btnResimSec" text="📷 Fotoğraf Ekle" onAction="#handleResimSec"
                 styleClass="action-button" />
-        <Label text="(İsteğe bağlı)" style="-fx-text-fill: #999999; -fx-font-size: 12px;"/>
-    </HBox>
+      </HBox>
 
     <ImageView fx:id="imgOnizleme" fitHeight="120" fitWidth="200"
                preserveRatio="true" visible="false" managed="false"
@@ -43,8 +42,5 @@
 
     <Button fx:id="postButton" text="Paylaş" onAction="#handlePost"
             styleClass="primary-button" />
-
-    <Button fx:id="logoutButton" text="Çıkış Yap" onAction="#handleLogout"
-            styleClass="default-button" />
 
 </VBox>

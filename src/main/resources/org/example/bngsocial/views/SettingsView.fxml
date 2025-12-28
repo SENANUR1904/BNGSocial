@@ -54,7 +54,7 @@
 
         <HBox alignment="CENTER" spacing="50">
             <VBox alignment="CENTER">
-                <Label text="0" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2196F3;"/>
+                <Label fx:id="lblFriendCount" text="0" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2196F3;"/>
                 <Label text="Arkadaş" style="-fx-text-fill: #7f8c8d; -fx-font-size: 13px;"/>
             </VBox>
             <VBox alignment="CENTER">

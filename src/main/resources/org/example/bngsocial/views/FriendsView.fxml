@@ -1,30 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="org.example.bngsocial.Controllers.FriendsController"
-      spacing="10" style="-fx-background-color: #f4f6f8;">
+<VBox spacing="10" style="-fx-background-color: #f4f6f8;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bngsocial.Controllers.FriendsController">
 
-    <padding><Insets top="20" left="20" right="20" bottom="20"/></padding>
+    <padding>
+        <Insets bottom="20" left="20" right="20" top="20" />
+    </padding>
 
-    <Label text="Kişiler &amp; Arkadaşlar" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+    <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Arkadaşlar &amp; İşlemler" />
 
     <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
-        <Tab text="Arkadaşlarım">
+
+        <Tab text="Arkadaşlarım (DB)">
             <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
-                <VBox fx:id="myFriendsContainer" spacing="10" style="-fx-padding: 10;"/>
+                <VBox fx:id="dbFriendsContainer" spacing="10" style="-fx-padding: 15;">
+                </VBox>
             </ScrollPane>
         </Tab>
 
-        <Tab text="Tüm Kişiler (Yeni Ekle)">
-            <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
-                <VBox fx:id="allUsersContainer" spacing="10" style="-fx-padding: 10;"/>
-            </ScrollPane>
+        <Tab text="Txt-Arkadaslar (İşlemler)">
+            <HBox spacing="20" style="-fx-padding: 15;">
+
+                <VBox spacing="15" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5,0,0,1);" minWidth="300">
+
+                    <Label style="-fx-font-weight: bold; -fx-font-size: 14px;" text="Arkadaşlık Kontrolü (Binary Search)" />
+                    <HBox spacing="10">
+                        <TextField fx:id="txtSourceId" promptText="Kaynak ID (Örn: 101)" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="txtTargetId" promptText="Hedef ID (Örn: 102)" HBox.hgrow="ALWAYS" />
+                    </HBox>
+                    <Button maxWidth="Infinity" onAction="#handleCheckFriendship" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;" text="Arkadaş Mı?" />
+                    <Label fx:id="lblTxtStatus" style="-fx-font-size: 13px;" text="..." />
+
+                    <Separator />
+
+                    <Label style="-fx-font-weight: bold; -fx-font-size: 14px;" text="Kişi İşlemleri" />
+                    <TextField fx:id="txtProcessId" promptText="İşlem yapılacak ID (Örn: 105)" />
+
+                    <Button maxWidth="Infinity" onAction="#handleShowFriends" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Arkadaş Göster" />
+
+                    <HBox spacing="10">
+                        <Button maxWidth="Infinity" onAction="#handleSuggestFriends" style="-fx-background-color: #2ecc71; -fx-text-fill: white;" text="Arkadaş Öner" HBox.hgrow="ALWAYS" />
+                        <Button maxWidth="Infinity" onAction="#handleSuggestRemove" style="-fx-background-color: #e74c3c; -fx-text-fill: white;" text="Çıkarma Öner" HBox.hgrow="ALWAYS" />
+                    </HBox>
+
+                </VBox>
+
+                <VBox spacing="10" HBox.hgrow="ALWAYS">
+                    <Label style="-fx-font-weight: bold;" text="Sonuç Ekranı:" />
+                    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-background: white; -fx-border-color: #ddd;">
+                        <VBox fx:id="txtResultBox" spacing="5" style="-fx-padding: 10; -fx-background-color: white;">
+                            <Label text="İşlem sonuçları burada listelenecek..." textFill="#999999" />
+                        </VBox>
+                    </ScrollPane>
+                </VBox>
+
+            </HBox>
         </Tab>
     </TabPane>
 </VBox>

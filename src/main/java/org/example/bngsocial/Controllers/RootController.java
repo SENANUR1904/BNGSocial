@@ -38,11 +38,8 @@ public class RootController {
     @FXML
     private void showNewPost() {
         // Senin oluşturduğun paylaşım sayfası
-        loadView("/org/example/bngsocial/views/mainScreen.fxml");
-        // Not: Eğer yeni yaptığımız sadece post kutusu olan sayfayı kullanacaksan PostView.fxml,
-        // eski tam sayfa yapısını kullanacaksan mainScreen.fxml.
-        // Alt bar olduğu için sadece içerik olan bir sayfa (PostView) daha mantıklı olabilir.
-    }
+        loadView("/org/example/bngsocial/views/Sharing.fxml");
+         }
 
     @FXML
     private void showTopLists() {
@@ -81,11 +78,11 @@ public class RootController {
             else if (controller instanceof SettingsController) {
                 ((SettingsController) controller).setUserId(currentUserId);
             }
-            else if (controller instanceof MainScreenController) {
+            else if (controller instanceof SharingController) {
                 // Eğer eski mainScreen'i kullanıyorsan onun metod adı setUserData idi
                 // Ama ismi almak için veritabanına tekrar sormak yerine basitçe "Kullanıcı" diyebiliriz
                 // veya sadece ID gönderecek şekilde o metodu güncelleyebilirsin.
-                ((MainScreenController) controller).setUserData(currentUserId, currentUsername);
+                ((SharingController) controller).setUserData(currentUserId, currentUsername);
             }
 
             mainPane.setCenter(view);

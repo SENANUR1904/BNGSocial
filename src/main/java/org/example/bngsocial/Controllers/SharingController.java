@@ -2,13 +2,10 @@ package org.example.bngsocial.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,11 +15,10 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.IOException;
-import java.sql.*;
-import java.util.UUID;
 
-public class MainScreenController {
+import java.sql.*;
+
+public class SharingController {
 
     // FXML Değişkenleri
     @FXML private Label welcomeLabel;
@@ -129,33 +125,6 @@ public class MainScreenController {
 
     }
 
-    // --- 4. ÇIKIŞ YAPMA (LOGOUT) METODU ---
-    @FXML
-    private void handleLogout() {
-        try {
-            // Mevcut pencereyi al
-            Stage stage = (Stage) logoutButton.getScene().getWindow();
-
-            // Login ekranını yükle
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/bngsocial/views/signScreen.fxml"));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-            try {
-                // CSS dosyanızın yolu
-                scene.getStylesheets().add(getClass().getResource("/org/example/bngsocial/styles/style.css").toExternalForm());
-            } catch (Exception e) { /* CSS yoksa devam et */ }
-
-            stage.setScene(scene);
-            stage.setTitle("Giriş Yap");
-            stage.centerOnScreen();
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     // --- 5. GÖNDERİLERİ YÜKLEME (FEED) ---
     private void loadPosts() {
         // EKSTRA GÜVENLİK ÖNLEMİ:
@@ -166,10 +135,9 @@ public class MainScreenController {
 
         feedContainer.getChildren().clear();
 
-        // ... Geri kalan kodlar aynı ...
         String sql = "SELECT p.post_id, p.content_text, p.image_path, p.created_at, u.username " +
                 "FROM Gonderiler p " +
-                "JOIN users u ON p.user_id = u.user_id " +
+                "JOIN Kullanicilar u ON p.user_id = u.user_id " +
                 "WHERE p.user_id = ? " +
                 "ORDER BY p.created_at DESC";
 

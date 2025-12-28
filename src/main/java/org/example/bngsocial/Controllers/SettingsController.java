@@ -30,6 +30,7 @@ public class SettingsController {
     @FXML private Label lblEmail;           // E-posta
     @FXML private Hyperlink lnkRemovePhoto; // "Kaldır" Linki
     @FXML private Label lblPostCount;       // Gönderi Sayısı
+    @FXML private Label lblFriendCount;     // ARKADAŞ SAYISI - YENİ EKLENDİ
     @FXML private Button btnLogout;         // Çıkış Butonu
 
     // --- DEĞİŞKENLER ---
@@ -47,16 +48,23 @@ public class SettingsController {
 
     // --- 1. PROFİL BİLGİLERİNİ YÜKLEME ---
     private void loadUserProfile() {
-        // SQL: Kullanıcı bilgilerini ve gönderi sayısını (post_count) tek seferde çekiyoruz
-        String sql = "SELECT username, full_name, email, profile_photo, " +
-                "(SELECT COUNT(*) FROM Gonderiler WHERE user_id = ?) as post_count " +
-                "FROM Kullanicilar WHERE user_id = ?";
+        // SQL: Kullanıcı bilgilerini, gönderi sayısını ve arkadaş sayısını tek seferde çekiyoruz
+        String sql = "SELECT " +
+                "u.username, u.full_name, u.email, u.profile_photo, " +
+                "(SELECT COUNT(*) FROM Gonderiler WHERE user_id = ?) as post_count, " +
+                "(SELECT COUNT(*) FROM Arkadaslik WHERE " +
+                "   (sender_id = ? AND status = 'ACCEPTED') OR " +
+                "   (receiver_id = ? AND status = 'ACCEPTED')) as friend_count " +
+                "FROM Kullanicilar u WHERE u.user_id = ?";
 
         try (Connection conn = DriverManager.getConnection(DB_URL);
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            ps.setInt(1, currentUserId); // Alt sorgu için
-            ps.setInt(2, currentUserId); // Ana sorgu için
+            // Parametreleri ayarla
+            ps.setInt(1, currentUserId); // post_count için
+            ps.setInt(2, currentUserId); // friend_count için (sender)
+            ps.setInt(3, currentUserId); // friend_count için (receiver)
+            ps.setInt(4, currentUserId); // ana sorgu için
 
             ResultSet rs = ps.executeQuery();
 
@@ -67,8 +75,9 @@ public class SettingsController {
                 lblFullName.setText(rs.getString("full_name"));
                 lblEmail.setText(rs.getString("email"));
 
-                // İstatistik
+                // İstatistikler
                 lblPostCount.setText(String.valueOf(rs.getInt("post_count")));
+                lblFriendCount.setText(String.valueOf(rs.getInt("friend_count")));
 
                 // Fotoğraf Yolu
                 this.currentPhotoPath = rs.getString("profile_photo");
