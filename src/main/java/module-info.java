@@ -9,6 +9,7 @@ module org.example.bngsocial {
 
     requires java.desktop;
 
+
     exports org.example.bngsocial;
     exports org.example.bngsocial.Controllers;
     exports org.example.bngsocial.Models;

@@ -26,7 +26,7 @@ public class TxtManager {
     // --- BAŞLATMA METODU ---
     public static void init() {
         dosyaOku();
-        //bubbleSortUsersById(); // Binary Search için sıralama ŞART
+        bubbleSortUsersById(); // Binary Search için sıralama ŞART
 
         // Matris boyutunu ayarla
         if (!txtUsers.isEmpty()) {
@@ -237,7 +237,7 @@ public class TxtManager {
 
     // --- ÖNERİ PUANI ---
     public static double oneriPuaniHesapla(int candidateId, int targetId) {
-        double baseScore = iliskiPuaniHesapla(candidateId, targetId);
+        double baseScore = iliskiPuaniHesapla(targetId,candidateId);
         double friendsScoreSum = 0;
 
         int targetIdx = getUserIndex(targetId);
@@ -246,7 +246,7 @@ public class TxtManager {
         for (int i = 0; i < txtUsers.size(); i++) {
             if (relationMatrix[targetIdx][i] > 0) { // Arkadaşsa
                 int friendId = txtUsers.get(i).getId();
-                friendsScoreSum += iliskiPuaniHesapla(candidateId, friendId);
+                friendsScoreSum += iliskiPuaniHesapla(friendId,candidateId );
             }
         }
         return baseScore + friendsScoreSum;
@@ -297,18 +297,34 @@ public class TxtManager {
     }
 
     // En Çok Beğeni/Yorum Alanlar (Grafik/Enler için)
+    // En Çok Beğeni/Yorum Alanlar (Grafik/Enler için)
     public static List<String> enCokEtkilesimAlan(String category) {
         // Her user için sayaç (index bazlı)
         int[] counts = new int[txtUsers.size()];
 
         for (int i = 0; i < intPostIds.size(); i++) {
+            // 1. Kategori eşleşiyor mu? (LIKE veya COMMENT)
             if (intCategories.get(i).equals(category)) {
+
+                // 2. Değer (Type) kontrolü
+                // "0" değeri LIKE için "Beğenmeme"dir (sayılmaz),
+                // ama COMMENT için "Nötr Yorum"dur (sayılır).
+                int type = intTypes.get(i);
+
+                // Eğer kategori BEĞENİ ise ve tip 0 ise (Beğenmeme), bunu atla.
+                if (category.equals("LIKE") && type == 0) {
+                    continue;
+                }
+
                 // Post sahibini bul: "107-P01" -> 107
                 try {
                     String pId = intPostIds.get(i);
+                    // Regex ile ID ayıklama
                     String ownerIdStr = pId.split("-|P")[0];
                     int ownerId = Integer.parseInt(ownerIdStr);
                     int idx = getUserIndex(ownerId);
+
+                    // Eğer kullanıcı listede varsa sayacı artır
                     if (idx != -1) counts[idx]++;
                 } catch(Exception e) {}
             }

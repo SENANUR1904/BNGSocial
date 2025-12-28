@@ -30,7 +30,7 @@ public class NetworkController {
     @FXML private TabPane networkTabPane;
 
     private int currentUserId;
-    private final String DB_URL = "jdbc:sqlserver://DESKTOP-QQQ1H73;databaseName=BNGSocialDB;integratedSecurity=true;encrypt=true;trustServerCertificate=true;";
+    private final String DB_URL = "jdbc:sqlserver://DESKTOP-1JTGLF8;databaseName=BNGSocialDB;integratedSecurity=true;encrypt=true;trustServerCertificate=true;";
 
     private boolean txtRankingLoaded = false; // Butona basılıp basılmadığını kontrol etmek için
 
@@ -255,6 +255,7 @@ public class NetworkController {
                 // Böylece arkadaş olmayanlar da listeye girer.
 
                 int user1Id = users.get(i).getId();
+
                 int user2Id = users.get(j).getId();
 
                 // Matris yüklü değilse varsayılan 0 al, yüklüyse durumu al
@@ -264,7 +265,7 @@ public class NetworkController {
                         j < TxtManager.relationMatrix[0].length) {
                     status = TxtManager.relationMatrix[i][j];
                 }
-
+                System.out.println(user1Id+" "+user2Id);
                 // İlişki puanını hesapla (Arkadaş olmasalar bile etkileşim puanı olabilir)
                 double score = TxtManager.iliskiPuaniHesapla(user1Id, user2Id);
 
@@ -339,7 +340,7 @@ public class NetworkController {
             rankLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: #7f8c8d;");
 
             // İsimler
-            Label nameLabel = new Label(user1List.get(i) + " → " + user2List.get(i));
+            Label nameLabel = new Label(user2List.get(i) + " → " + user1List.get(i));
             nameLabel.setPrefWidth(200);
             nameLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: #2c3e50;");
 

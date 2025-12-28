@@ -24,7 +24,7 @@ public class FriendsController {
     @FXML private VBox dbFriendsContainer;
 
     private int currentUserId;
-    private final String DB_URL = "jdbc:sqlserver://DESKTOP-QQQ1H73;databaseName=BNGSocialDB;integratedSecurity=true;encrypt=true;trustServerCertificate=true;";
+    private final String DB_URL = "jdbc:sqlserver://DESKTOP-1JTGLF8;databaseName=BNGSocialDB;integratedSecurity=true;encrypt=true;trustServerCertificate=true;";
 
     public void setUserId(int userId) {
         this.currentUserId = userId;

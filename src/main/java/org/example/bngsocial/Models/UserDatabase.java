@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class UserDatabase {
 
-    private static final String CONNECTION_URL = "jdbc:sqlserver://DESKTOP-QQQ1H73;databaseName=BNGSocialDB;integratedSecurity=true;encrypt=true;trustServerCertificate=true;";
+    private static final String CONNECTION_URL = "jdbc:sqlserver://DESKTOP-1JTGLF8;databaseName=BNGSocialDB;integratedSecurity=true;encrypt=true;trustServerCertificate=true;";
 
     public static Connection connect() throws SQLException {
         try {
